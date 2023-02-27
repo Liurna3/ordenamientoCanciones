@@ -1,0 +1,224 @@
+
+
+
+#+TITLE:  Documentacion de linkedList.h
+#+AUTHOR: Luis Eduardo Galindo Amaya
+#+DATE:   2023-02-25
+# --
+
+#+OPTIONS: toc:t ^:nil title:t
+
+* Importante
+Cada metodo que manipule un =linkedList= pasa como primer parametro la direccion a la lista (=&= al inicio), ejemplo:
+
+#+begin_src C
+  LinkedList lista;
+  linkedListInit(&lista);         /* Aquí */
+
+  linkedListInsert(&lista, node, 0); /* Aquí */
+
+  if (linkedListEmpty(&list)) { /* y Aquí */
+    /* Bla bla... */
+  }
+#+end_src
+
+- Justificación :: Esto se hace para mantener la consistencia entre métodos y no estar recordando cual se pasa como parámetro y cual otro como referencia. 
+
+* Estructura de LinkedList
+La estructura de LinkedList tiene dos parametros, la direccion al primer nodo (nodes) y el numero de nodos en la lista (size).
+
+#+begin_src C 
+struct LinkedList {
+  struct LinkedListNode *nodes;
+  int size;
+};
+#+end_src
+
+- IMPORTANTE :: el valor de size siempre es uno más que la posicion mas alta utilizada, por ejemplo si quisieramos sacar el ultimo elemento de la lista con LinkedListGet tendriamos que usar size-1:
+
+|---+------------+------+--------------------------|
+|   | Lista      | size | Posición del ultimo nodo |
+| / | <>         |   <> |                       <> |
+|---+------------+------+--------------------------|
+|   | []         |    0 |                    ERROR |
+|   | [1]        |    1 |                        0 |
+|   | [1,2,3]    |    3 |                        2 |
+|   | [4,51,6,7] |    4 |                        3 |
+|---+------------+------+--------------------------|
+
+* Crear una lista: initLinkedList
+La función =initLinkedList= coloca el primer nodo de la lista en =NULL= y la longitud de la lista en =0=, esto es importante porque no podemos saber que valores hay antes y podríamos referenciar memoria que no esta disponible.
+
+#+begin_src C 
+  LinkedList lista;
+  linkedListInit(&lista);
+#+end_src
+
+* Validar si la lista esta vacía: LinkedListEmpty
+=LinkedListEmpty= retorna =1= *sí la lista esta vacía* y =0= *sí tiene algún elemento*.
+
+#+begin_src C 
+  if (linkedListEmpty(&list)) {
+    /* Tu código */
+  }
+#+end_src
+
+* Añadir elementos a la lista
+** Crear un nuevo nodo: createLinkedListNode
+Para que sea mas fácil de modificar los contenidos de la lista =LinkedList= no se encarga de crear los nodos directamente si no que un método aparte crea el nodo =LinkedListNode= y pasa la dirección a la lista:
+
+#+begin_src C
+  /* retorna una direccion de memoria */
+  LinkedListNode *nodo = createLinkedListNode(13);
+#+end_src
+
+Si quisieramos modificar que contiene cada nodo solo terndiamos que modificar el metodo =createLinkedListnode= y la estructura de =LinkedListNode=.
+
+** Añadir el nodo al inicio
+*** Forma larga: linkedListInsert
+para insertar un elemento en la ultima posicion no es necesario restar =1= a el numero de elementos, la funcion 
+
+#+begin_src C
+  /* inicializar la lista */
+  LinkedList lista;
+  linkedListInit(&lista);
+
+  /* crar el nodo */
+  LinkedListNode *nodo = createLinkedListNode(13);
+
+  linkedListInsert(&lista, nodo, 0); /* posición 0 */
+#+end_src
+
+*** Forma corta: linkedListInsertLast
+Como la lista esta vacía el ultimo, que al mismo tiempo el primero, elemento podemos insertar rápidamente el primer elemento con el método insert last
+
+#+begin_src C
+  /* inicializar la lista */
+  LinkedList lista;
+  linkedListInit(&lista);
+
+  /* crear el nodo */
+  LinkedListNode *nodo = createLinkedListNode(13);
+
+  /* Insertar el nodo */
+  linkedListInsertLast(&list, nodo);
+#+end_src
+
+** Añadir un nodo en cualquier posición con: linkedListInsert
+#+begin_src C
+  int posicion = 0;
+  linkedListInsert(&lista, nodo, posicion); /* posición 0 */
+#+end_src
+
+*** Ejemplos
+|---+------------+--------+------------+----------+-------------|
+|   | LinkedList | Lenght | valor nodo | Posicion | Resultado   |
+| / |            |        |            |          | <>          |
+|---+------------+--------+------------+----------+-------------|
+|   | [A,B,C]    |      3 | D          |        2 | [A,B,D,C]   |
+|   | [B,B,B,B]  |      4 | A          |        0 | [A,B,B,B,B] |
+|   | [A,B,C]    |      3 | D          |        3 | [A,B,C,D]   |
+|   | [A,B,C]    |      3 | D          |        4 | ERROR       |
+|---+------------+--------+------------+----------+-------------|
+
+** Añadir nodo al final
+*** con linkedListInsert
+#+begin_src C
+  linkedListInsert(&lista, nodo, linkedListLenght(&lista)); 
+#+end_src
+
+*** con linkedListInsertLast
+#+begin_src C
+  linkedListInsertLast(&lista, nodo); 
+#+end_src
+
+
+* Tamaño de la lista linkedListLenght
+#+begin_src C
+int size = linkedListLenght(&list);
+#+end_src
+
+* Extraer Nodo de la lista 
+** IMPORTANTE
+=LinkedList= solo se encarga de gestionar los nodos por lo tanto los metodos para obtener informacion de ellos solo retornan la direccion del nodo y queda a consideracion del programador que hacer con ellos.
+
+*NO* se recomienda manipular la variable =next= dentro del nodo o liberar la memoria correspondiente a un nodo dentro de la lista.
+
+** Obtener un nodo de la lista LinkedListGet
+Tomando en cuenta el punto anterior debemos tener un espacio para almacenar la direccion de nuestro nodo:
+
+#+caption: Obtener un valor de la lista
+#+begin_src C
+  linkedListInsert(&lista,createLinkedListNode(10),0);
+  linkedListInsert(&lista,createLinkedListNode(13),1);
+  /* lista = [10, 13] */
+
+  /* puntero a el elemento 0 de la lista */
+  LinkedListNode *nodo = linkedListGet(&lista, 0); 
+
+  printf("%d\n", nodo->data);     /* 13 */
+#+end_src
+
+#+caption: Iterar la lista
+#+begin_src C
+  linkedListInsert(&lista,createLinkedListNode(10),0);
+  linkedListInsert(&lista,createLinkedListNode(13),1);
+
+  for(int i=0;i < linkedListLenght(&lista); i++){
+    /* iterar la lista y obtener valore */
+    LinkedListNode *nodo = linkedListGet(&lista,i);
+    printf("%d\n", nodo->data); 
+   }
+#+end_src
+
+* Cambiar el valor de un nodo
+** Reemplazar el nodo LinkedListSet
+#+begin_src C
+  LinkedList *nodo_viejo = createlinkedlistnode(10);
+  linkedListInsertLast(&lista,nodo_viejo); /* agregar un nodo a la lista */
+
+  LinkedListNode *nodo_nuevo = createLinkedListNode(3);
+  linkedListSet(&lista,nodo,0);   /* cambiar el valor del primer nodo */
+  nodo_nuevo = NULL;              /* para evitar errores de referencia */
+
+  printf("%d\n", linkedListGet(&list, 0)); /* -> 3 */
+#+end_src
+
+* Eliminar elementos de la lista
+** IMPORTANTE
+Para eliminar un elemento con =LinkedList= el nodo debe existir, si el nodo NO existe el programa se detendra y lanzara un mensaje de error:
+
+|---+---------+----------+-----------|
+|   | Lista   | Posicion | Resultado |
+| / | <>      |       <> | <>        |
+|---+---------+----------+-----------|
+|   | []      |        0 | ERROR     |
+|   | [A]     |        1 | ERROR     |
+|   | [A]     |        0 | []        |
+|   | [A,B,C] |        1 | [A,C]     |
+|   | [A,B,C] |        2 | [A,B]     |
+|   | [A,B,C] |        3 | ERROR     |
+|---+---------+----------+-----------|
+
+** Eliminar elementos linkedListRemove
+#+begin_src C
+  LinkedList lista;
+  linkedListInit(&lista);
+
+  linkedListInsert(&lista,createLinkedListNode(10),0);
+  linkedListRemove(&lista,0);
+#+end_src
+
+** Eliminar el ultimo elemento de la lista LinkedListRemoveLast
+#+begin_src C
+  LinkedList lista;
+  linkedListInit(&lista);
+
+  linkedListInsert(&lista,createLinkedListNode(10),0);
+
+  linkedListRemoveLast(&lista);
+#+end_src
+* Liberar la memoria de la lista
+#+begin_src C
+  linkedListFree(&lista);
+#+end_src
