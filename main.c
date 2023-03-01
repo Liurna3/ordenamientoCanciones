@@ -16,10 +16,6 @@
 #include "utils.h"
 #include "sort.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 int main(void)
 {
   LinkedList pagosFijos;
