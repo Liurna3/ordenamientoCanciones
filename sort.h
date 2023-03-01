@@ -11,8 +11,8 @@
 #include <string.h>
 
 // void bubbleSort(LinkedList *lista);
-//void insertionSort(LinkedList *lista);
-//void selectionSort(LinkedList *lista);
+// void insertionSort(LinkedList *lista);
+// void selectionSort(LinkedList *lista);
 
 void bubbleSort(LinkedList *lista)
 {
@@ -20,10 +20,14 @@ void bubbleSort(LinkedList *lista)
   {
     for (int j = 0; j < len(lista) - i - 1; j++)
     {
-      if (strcmp(get(lista, j)->concept, get(lista, j + 1)->concept) > 0)
+      char *concept_1 = concept(get(lista, j));
+      char *concept_2 = concept(get(lista, j + 1));
+
+      if (strcmp(concept_1, concept_1))
       {
+        // cambio de valores
         LinkedListNode *temp1 = get(lista, j);
-        delete(lista, j);
+        delete (lista, j);
         insert(lista, temp1, j + 1);
       }
     }
