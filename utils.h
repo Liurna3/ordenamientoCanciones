@@ -1,5 +1,3 @@
-#include "linkedList.h"
-#include "linkedListNode.h"
 
 #include <stdio.h>
 #include <stdlib.h>

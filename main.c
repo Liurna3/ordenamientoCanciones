@@ -1,13 +1,17 @@
 
 /**
  * AUTORES:                                                    FECHA: 26-02-2023
- * -  Luis Eduardo Galindo Amaya -
- * -  Jorge Omar Torres Sosa - 1270900
- * -  Mariano Perez Piña -
+ * - Luis Eduardo Galindo Amaya -
+ * - Jorge Omar Torres Sosa - 1270900
+ * - Mariano Perez Piña -
+ *
  * DESCRIPCIÓN:
  * M2.1 Ejercicio de ordenamiento básico. Escribe un programa que capture los
  * gastos de una persona y que calcule cuánto ha gastado en total.
  */
+
+#include "linkedList.h"
+#include "linkedListNode.h"
 
 #include "utils.h"
 #include "sort.h"

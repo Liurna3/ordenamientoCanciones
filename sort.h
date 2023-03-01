@@ -6,15 +6,13 @@
  * gastos de una persona y que calcule cuánto ha gastado en total.
  */
 
-#include "utils.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-void bubbleSort(LinkedList *lista);
-void insertionSort(LinkedList *lista);
-void selectionSort(LinkedList *lista);
+// void bubbleSort(LinkedList *lista);
+//void insertionSort(LinkedList *lista);
+//void selectionSort(LinkedList *lista);
 
 void bubbleSort(LinkedList *lista)
 {
