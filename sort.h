@@ -11,23 +11,25 @@
 #include <string.h>
 
 // void bubbleSort(LinkedList *lista);
-// void insertionSort(LinkedList *lista);
-// void selectionSort(LinkedList *lista);
+//void insertionSort(LinkedList *lista);
+//void selectionSort(LinkedList *lista);
 
 void bubbleSort(LinkedList *lista)
 {
-  for (int i = 0; i < len(lista); i++)
-  {
-    for (int j = 0; j < len(lista) - i - 1; j++)
-    {
-      char *concept_1 = concept(get(lista, j));
-      char *concept_2 = concept(get(lista, j + 1));
+  // tamaño de la lista 
+  int lista_len = len(lista);
 
-      if (strcmp(concept_1, concept_1))
+  for (int i = 0; i < lista_len; i++)
+  {
+    for (int j = 0; j < lista_len - i - 1; j++)
+    {
+      char *a = concept(get(lista, j));
+      char *b = concept(get(lista, j + 1));
+
+      if (0 < strcmp(a, b))
       {
-        // cambio de valores
         LinkedListNode *temp1 = get(lista, j);
-        delete (lista, j);
+        delete(lista, j);
         insert(lista, temp1, j + 1);
       }
     }
