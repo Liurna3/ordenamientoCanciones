@@ -18,45 +18,123 @@
 
 int main(void)
 {
-  LinkedList pagosFijos;
-  LinkedList entretenimiento;
-  LinkedList comida;
+    char concepto[CONCEPT_LENGHT] = {0};
+    float monto = 0;
+    int op = 1;
+    int tipo = 0;
 
-  linkedListInit(&pagosFijos);
-  linkedListInit(&entretenimiento);
-  linkedListInit(&comida);
+    LinkedList pagosFijos;
+    LinkedList entretenimiento;
+    LinkedList comida;
 
-  /* agregar elementos */
-  append(&entretenimiento, CATEGORY_ENTERTAMENT, "Boleto para Morbius", 100.50);
-  append(&comida, CATEGORY_FOOD, "Palomitas", 20.0);
-  append(&pagosFijos, CATEGORY_FIXED_PAYMENT, "Pago de renta", 1000.0);
-  append(&pagosFijos, CATEGORY_FIXED_PAYMENT, "Pago de agua", 1000.0);
-  append(&pagosFijos, CATEGORY_FIXED_PAYMENT, "Abarrotes", 1000.0);
-  append(&pagosFijos, CATEGORY_FIXED_PAYMENT, "Pago de luz", 1000.0);
+    // Inicializando listas
+    linkedListInit(&pagosFijos);
+    linkedListInit(&entretenimiento);
+    linkedListInit(&comida);
 
-  append(&comida, CATEGORY_FOOD, "Palomitas", 20.0);
-  append(&comida, CATEGORY_FOOD, "Coca-Cola", 20.0);
-  append(&comida, CATEGORY_FOOD, "Hot-Dog", 20.0);
-  append(&comida, CATEGORY_FOOD, "Papas", 20.0);
-  append(&comida, CATEGORY_FOOD, "Nachos", 20.0);
+    do
+    {
+        printf(
+            "\nCAPTURADOR DE GASTOS\n"
+            " [1] CAPTURAR GASTO\n"
+            " [2] MOSTRAR GASTO EN ALIMENTOS\n"
+            " [3] MOSTRAR GASTO EN DIVERSION\n"
+            " [4] MOSTRAR GASTO EN PAGOS FIJOS\n"
+            " [0] SALIR\n"
+            " --> ");
 
-  append(&pagosFijos, CATEGORY_FIXED_PAYMENT, "Pago de renta", 1000.0);
-  append(&pagosFijos, CATEGORY_FIXED_PAYMENT, "Pago de agua", 1000.0);
-  append(&pagosFijos, CATEGORY_FIXED_PAYMENT, "Abarrotes", 1000.0);
-  append(&pagosFijos, CATEGORY_FIXED_PAYMENT, "Pago de luz", 1000.0);
+        scanf(" %d", &op);
 
-  bubbleSort(&pagosFijos);
-  printLista(&pagosFijos);
+        // vaciar stdin antes de capturar el concepto
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
 
-  insertionSort(&comida);
-  printLista(&comida);
+        switch (op)
+        {
+        case 1:
+            printf("INGRESAR EL CONCEPTO: ");
+            fgets(concepto, CONCEPT_LENGHT, stdin);
 
-  selectionSort(&entretenimiento);
-  printLista(&entretenimiento);
+            char *p;
+            if ((p = strchr(concepto, '\n')) != NULL)
+                *p = '\0';
 
-  linkedListFree(&pagosFijos);
-  linkedListFree(&entretenimiento);
-  linkedListFree(&comida);
+            printf("INGRESAR MONTO($): ");
+            scanf(" %f", &monto);
 
-  return 0;
+            printf(
+                "Ingresar el tipo de gasto\n"
+                "[1] Comida\n"
+                "[2] Entretenimiento\n"
+                "[3] Pago fijo\n"
+                "-->");
+
+            scanf(" %d", &tipo);
+
+            switch (tipo - 1) // para capturar el valor correcto
+            {
+            case CATEGORY_FOOD:
+                append(
+                    &comida,
+                    CATEGORY_FOOD,
+                    concepto,
+                    monto);
+                break;
+
+            case CATEGORY_ENTERTAMENT:
+                append(
+                    &entretenimiento,
+                    CATEGORY_ENTERTAMENT,
+                    concepto,
+                    monto);
+                break;
+
+            case CATEGORY_FIXED_PAYMENT:
+                append(
+                    &pagosFijos,
+                    CATEGORY_FIXED_PAYMENT,
+                    concepto,
+                    monto);
+                break;
+
+            default:
+                printf("Tipo de gasto invalido!, Cancelado.\n");
+                break;
+            }
+
+            break;
+
+        case 2:
+            insertionSort(&comida);
+            printLista(&comida);
+            break;
+
+        case 3:
+            selectionSort(&entretenimiento);
+            printLista(&entretenimiento);
+            break;
+
+        case 4:
+
+            bubbleSort(&pagosFijos);
+            printLista(&pagosFijos);
+            break;
+
+        case 0:
+            printf("saliendo...\n");
+            break;
+
+        default:
+            printf("opcion desconocida...\n");
+            break;
+        }
+
+    } while (op);
+
+    // liberar memoria
+    linkedListFree(&pagosFijos);
+    linkedListFree(&entretenimiento);
+    linkedListFree(&comida);
+
+    return 0;
 }

@@ -22,7 +22,8 @@
 #define CATEGORY_ENTERTAMENT 1
 #define CATEGORY_FIXED_PAYMENT 2
 
-struct LinkedListNode {
+struct LinkedListNode
+{
   struct LinkedListNode *next;
 
   /* Propiedades */
@@ -40,10 +41,12 @@ typedef struct LinkedListNode LinkedListNode;
  * @return direccion al nodo
  */
 LinkedListNode *linkedListNodeCreate(short category, char *concept,
-                                     float cost) {
+                                     float cost)
+{
   LinkedListNode *foo = malloc(sizeof(LinkedListNode));
 
-  if (foo == NULL) {
+  if (foo == NULL)
+  {
     printf("LinkedListNodeCreate: No se pudo reservar memoria!!\n");
     exit(EXIT_FAILURE);
   }
@@ -62,7 +65,8 @@ LinkedListNode *linkedListNodeCreate(short category, char *concept,
  * @param node direccion al nodo
  * @return
  */
-LinkedListNode *linkedListNodeCopy(LinkedListNode *node) {
+LinkedListNode *linkedListNodeCopy(LinkedListNode *node)
+{
   return linkedListNodeCreate(node->category, node->concept, node->cost);
 }
 
@@ -72,10 +76,12 @@ LinkedListNode *linkedListNodeCopy(LinkedListNode *node) {
  * @return
  */
 void linkedListNodeInit(LinkedListNode *node, short category, char *concept,
-                        float cost) {
+                        float cost)
+{
   node = malloc(sizeof(LinkedListNode));
 
-  if (node == NULL) {
+  if (node == NULL)
+  {
     printf("LinkedListNodeInit: No se pudo reservar memoria!!\n");
     exit(EXIT_FAILURE);
   }
@@ -92,8 +98,10 @@ void linkedListNodeInit(LinkedListNode *node, short category, char *concept,
  * @param
  * @return
  */
-void linkedListNodeDisplay(LinkedListNode *node) {
-  switch (node->category) {
+void linkedListNodeDisplay(LinkedListNode *node)
+{
+  switch (node->category)
+  {
   case CATEGORY_FOOD:
     printf("Comida, ");
     break;

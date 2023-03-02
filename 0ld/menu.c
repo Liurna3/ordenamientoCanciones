@@ -85,6 +85,7 @@ do//Se cicla hasta que el usuario quiera salir
 }
 
 
+
 int display(void){
     printf("\nCAPTURADOR DE GASTOS\n");
     printf(" [1] CAPTURAR GASTO\n");

@@ -1,8 +1,8 @@
 
 /**
  * AUTOR: Luis Eduardo Galindo Amaya                           FECHA: 26-02-2023
- *                                                                             
- * DESCRIPCIÓN:                                                                
+ *
+ * DESCRIPCIÓN:
  * En este archivo se almacenan todos los métodos para controlar una lista
  * enlazada.
  */
@@ -13,7 +13,8 @@
 #include "linkedListNode.h"
 #include <stdlib.h>
 
-struct LinkedList {
+struct LinkedList
+{
   struct LinkedListNode *nodes;
   int size;
 };
@@ -40,7 +41,8 @@ short linkedListEmpty(LinkedList *list) { return list->nodes == NULL; }
  * @param
  * @return
  */
-short linkedListInvalidPosition(LinkedList *list, int position) {
+short linkedListInvalidPosition(LinkedList *list, int position)
+{
   /* tamaño es inferior a la posicion (hay menos elementos que la
      posicion solicitada), la posicion es un valor negativo */
 
@@ -51,7 +53,8 @@ short linkedListInvalidPosition(LinkedList *list, int position) {
  * Inicializar el arreglo
  * @param list dirección a una lista
  */
-void linkedListInit(LinkedList *list) {
+void linkedListInit(LinkedList *list)
+{
   list->nodes = NULL;
   list->size = 0;
 }
@@ -60,8 +63,10 @@ void linkedListInit(LinkedList *list) {
  * Liberar un nodo de la lista que ya no se va a usar
  * @param node direccion del nodo
  */
-void freeLinkedListNode(LinkedListNode *node) {
-  if (node == NULL) {
+void freeLinkedListNode(LinkedListNode *node)
+{
+  if (node == NULL)
+  {
     printf("freeLinkedListNode: El nodo esta vacio\n");
     exit(EXIT_FAILURE);
   }
@@ -74,28 +79,33 @@ void freeLinkedListNode(LinkedListNode *node) {
  * @param position
  * @return LinkedListNode
  */
-LinkedListNode *linkedListGet(LinkedList *list, int position) {
+LinkedListNode *linkedListGet(LinkedList *list, int position)
+{
   LinkedListNode *current = list->nodes; /* primer elemento */
 
-  if (linkedListInvalidPosition(list, position)) {
+  if (linkedListInvalidPosition(list, position))
+  {
     /* Si la posición solicitada es mas grande que la cantidad
        de nodo disponibles entonces termina */
     printf("linkedListGet: Posición fuera de rango!!\n");
     exit(EXIT_FAILURE);
   }
 
-  if (linkedListEmpty(list)) {
+  if (linkedListEmpty(list))
+  {
     /* No se puede extraer valores de una lista vacía */
     printf("linkedListGet: La lista esta vacia!!\n");
     exit(EXIT_FAILURE);
   }
 
-  if (position == 0) {
+  if (position == 0)
+  {
     /* Primer elemento de la lista */
     return list->nodes;
   }
 
-  for (int i = 0; i < position; i++) {
+  for (int i = 0; i < position; i++)
+  {
     /* caso generico */
     current = current->next;
   }
@@ -109,26 +119,30 @@ LinkedListNode *linkedListGet(LinkedList *list, int position) {
  * @param node dirección a un nodo
  * @param position posición donde insertar el elemento
  */
-void linkedListInsert(LinkedList *list, LinkedListNode *node, int position) {
+void linkedListInsert(LinkedList *list, LinkedListNode *node, int position)
+{
   LinkedListNode *new = node;
   LinkedListNode *current = list->nodes; /* primer elemento */
   LinkedListNode *previous = NULL;
 
-  if (linkedListEmpty(list)) {
+  if (linkedListEmpty(list))
+  {
     /* si no hay elementos en la lista inserta en la primera posición */
     list->nodes = node;
     list->size++;
     return;
   }
 
-  if (linkedListInvalidPosition(list, position)) {
+  if (linkedListInvalidPosition(list, position))
+  {
     /* Si la posición solicitada es mas grande que la cantidad
        de nodo disponibles o la posicion es negativa entonces termina */
     printf("linkedListInsert: Posición %d fuera de rango!!\n", position);
     exit(EXIT_FAILURE);
   }
 
-  if (position == 0) {
+  if (position == 0)
+  {
     /* insertar al inicio de la lista */
     new->next = current;
     list->nodes = new;
@@ -136,7 +150,8 @@ void linkedListInsert(LinkedList *list, LinkedListNode *node, int position) {
     return;
   }
 
-  for (int i = 0; i < position; i++) {
+  for (int i = 0; i < position; i++)
+  {
     /* caso generico */
     previous = current;
     current = current->next;
@@ -152,28 +167,33 @@ void linkedListInsert(LinkedList *list, LinkedListNode *node, int position) {
  * @param list direccion a la lista
  * @param position posición del elemeto
  */
-void linkedListRemove(LinkedList *list, int position) {
+void linkedListRemove(LinkedList *list, int position)
+{
   LinkedListNode *current = list->nodes; /* primer elemento */
   LinkedListNode *previous = NULL;
 
-  if (linkedListEmpty(list)) {
+  if (linkedListEmpty(list))
+  {
     /* No se puede extraer valores de una lista vacía */
     printf("linkedListRemove: La lista esta vacia!!\n");
     exit(EXIT_FAILURE);
   }
 
-  if (linkedListInvalidPosition(list, position)) {
+  if (linkedListInvalidPosition(list, position))
+  {
     /* no valores fuera de rango o negativos */
     printf("linkedListRemove: Posición fuera de rango!!\n");
     exit(EXIT_FAILURE);
   }
 
-  if (position == linkedListLenght(list)) {
+  if (position == linkedListLenght(list))
+  {
     printf("linkedListRemove: Posición fuera de rango!!\n");
     exit(EXIT_FAILURE);
   }
 
-  if (linkedListLenght(list) == 1) {
+  if (linkedListLenght(list) == 1)
+  {
     /* si solo hay un elemento en lista */
     free(list->nodes);
     list->nodes = NULL;
@@ -181,7 +201,8 @@ void linkedListRemove(LinkedList *list, int position) {
     return;
   }
 
-  if (position == 0) {
+  if (position == 0)
+  {
     /* si se quiere eliminar el primer elemento */
     list->nodes = current->next;
     free(current);
@@ -189,7 +210,8 @@ void linkedListRemove(LinkedList *list, int position) {
     return;
   }
 
-  for (int i = 0; i < position; i++) {
+  for (int i = 0; i < position; i++)
+  {
     /* caso generico */
     previous = current;
     current = current->next;
@@ -208,27 +230,32 @@ void linkedListRemove(LinkedList *list, int position) {
  * @param list direccion de la lista
  * @return
  */
-void linkedListSet(LinkedList *list, LinkedListNode *node, int position) {
+void linkedListSet(LinkedList *list, LinkedListNode *node, int position)
+{
   LinkedListNode *new = node;
   LinkedListNode *current = list->nodes;
   LinkedListNode *previous = NULL;
 
-  if (linkedListEmpty(list)) {
+  if (linkedListEmpty(list))
+  {
     printf("linkedListReplace: La lista esta vacia!!\n");
     exit(EXIT_FAILURE);
   }
 
-  if (linkedListInvalidPosition(list, position)) {
+  if (linkedListInvalidPosition(list, position))
+  {
     printf("linkedListReplace: Posición %d fuera de rango!!\n", position);
     exit(EXIT_FAILURE);
   }
 
-  if (position == linkedListLenght(list)) {
+  if (position == linkedListLenght(list))
+  {
     printf("linkedListRemove: Posición fuera de rango!!\n");
     exit(EXIT_FAILURE);
   }
 
-  if (position == 0) {
+  if (position == 0)
+  {
     node->next = current->next;
     list->nodes = node;
 
@@ -236,7 +263,8 @@ void linkedListSet(LinkedList *list, LinkedListNode *node, int position) {
     return;
   }
 
-  for (int i = 0; i < position; i++) {
+  for (int i = 0; i < position; i++)
+  {
     /* caso generico */
     previous = current;
     current = current->next;
@@ -250,7 +278,8 @@ void linkedListSet(LinkedList *list, LinkedListNode *node, int position) {
  * eliminar el ultimo elemento de la lista
  * @param list direccion a la lista
  */
-void linkedListRemoveLast(LinkedList *list) {
+void linkedListRemoveLast(LinkedList *list)
+{
   linkedListRemove(list, linkedListLenght(list) - 1);
 }
 
@@ -259,7 +288,8 @@ void linkedListRemoveLast(LinkedList *list) {
  * @param list direccio de la lista
  * @param node direccion del nuevo nodo
  */
-void linkedListInsertLast(LinkedList *list, LinkedListNode *node) {
+void linkedListInsertLast(LinkedList *list, LinkedListNode *node)
+{
   linkedListInsert(list, node, linkedListLenght(list));
 }
 
@@ -267,8 +297,10 @@ void linkedListInsertLast(LinkedList *list, LinkedListNode *node) {
  * Liberar memoria del la lista enlazada
  * @param list direccion de la lista
  */
-void linkedListFree(LinkedList *list) {
-  for (int i = linkedListLenght(list); i > 0; i--) {
+void linkedListFree(LinkedList *list)
+{
+  for (int i = linkedListLenght(list); i > 0; i--)
+  {
     linkedListRemoveLast(list);
   }
 }

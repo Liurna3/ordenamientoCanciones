@@ -1,18 +1,14 @@
+
 /**
- * AUTORES:                                                    FECHA: 26-02-2023
- * -  Jorge Omar Torres Sosa - 1270900
+ * AUTOR: Jorge Omar Torres Sosa                               FECHA: 26-02-2023
+ * 
  * DESCRIPCIÓN:
- * M2.1 Ejercicio de ordenamiento básico. Escribe un programa que capture los
- * gastos de una persona y que calcule cuánto ha gastado en total.
+ * En este archivo se encuentran los algoritmos para ordenar las listas.
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-// void bubbleSort(LinkedList *lista);
-//void insertionSort(LinkedList *lista);
-//void selectionSort(LinkedList *lista);
 
 void bubbleSort(LinkedList *lista)
 {
@@ -44,7 +40,7 @@ void insertionSort(LinkedList *lista)
     int j = i - 1;
     while (j >= 0 && strcmp(get(lista, j)->concept, key->concept) > 0)
     {
-      LinkedListNode *temp2 = get(lista, j);
+      // LinkedListNode *temp2 = get(lista, j);
       j--;
     }
     delete(lista, i);
