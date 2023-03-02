@@ -10,24 +10,63 @@
 #include <stdlib.h>
 #include <string.h>
 
-void bubbleSort(LinkedList *lista)
+void mergeSort(LinkedList *lista)
 {
-  // tamaño de la lista 
-  int lista_len = len(lista);
-
-  for (int i = 0; i < lista_len; i++)
+  if (len(lista) > 1)
   {
-    for (int j = 0; j < lista_len - i - 1; j++)
+    LinkedList *left = malloc(sizeof(LinkedList));
+    LinkedList *right = malloc(sizeof(LinkedList));
+    linkedListInit(left);
+    linkedListInit(right);
+    int middle = len(lista) / 2;
+    for (int i = 0; i < middle; i++)
     {
-      char *a = concept(get(lista, j));
-      char *b = concept(get(lista, j + 1));
-
-      if (0 < strcmp(a, b))
+      LinkedListNode *temp = get(lista, i);
+      insert(left, temp, i);
+    }
+    for (int i = middle; i < len(lista); i++)
+    {
+      LinkedListNode *temp = get(lista, i);
+      insert(right, temp, i - middle);
+    }
+    mergeSort(left);
+    mergeSort(right);
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    while (i < len(left) && j < len(right))
+    {
+      if (strcmp(get(left, i)->concept, get(right, j)->concept) < 0)
       {
-        LinkedListNode *temp1 = get(lista, j);
-        delete(lista, j);
-        insert(lista, temp1, j + 1);
+        LinkedListNode *temp = get(left, i);
+        delete(lista, k);
+        insert(lista, temp, k);
+        i++;
       }
+      else
+      {
+        LinkedListNode *temp = get(right, j);
+        delete(lista, k);
+        insert(lista, temp, k);
+        j++;
+      }
+      k++;
+    }
+    while (i < len(left))
+    {
+      LinkedListNode *temp = get(left, i);
+      delete(lista, k);
+      insert(lista, temp, k);
+      i++;
+      k++;
+    }
+    while (j < len(right))
+    {
+      LinkedListNode *temp = get(right, j);
+      delete(lista, k);
+      insert(lista, temp, k);
+      j++;
+      k++;
     }
   }
 }

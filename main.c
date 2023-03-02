@@ -32,6 +32,7 @@ int main(void)
     linkedListInit(&entretenimiento);
     linkedListInit(&comida);
 
+
     do
     {
         printf(
@@ -116,7 +117,7 @@ int main(void)
 
         case 4:
 
-            bubbleSort(&pagosFijos);
+            mergeSort(&pagosFijos);
             printLista(&pagosFijos);
             break;
 
