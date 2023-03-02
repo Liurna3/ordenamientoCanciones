@@ -34,8 +34,25 @@ int main(void)
   append(&pagosFijos, CATEGORY_FIXED_PAYMENT, "Abarrotes", 1000.0);
   append(&pagosFijos, CATEGORY_FIXED_PAYMENT, "Pago de luz", 1000.0);
 
+  append(&comida, CATEGORY_FOOD, "Palomitas", 20.0);
+  append(&comida, CATEGORY_FOOD, "Coca-Cola", 20.0);
+  append(&comida, CATEGORY_FOOD, "Hot-Dog", 20.0);
+  append(&comida, CATEGORY_FOOD, "Papas", 20.0);
+  append(&comida, CATEGORY_FOOD, "Nachos", 20.0);
+
+  append(&pagosFijos, CATEGORY_FIXED_PAYMENT, "Pago de renta", 1000.0);
+  append(&pagosFijos, CATEGORY_FIXED_PAYMENT, "Pago de agua", 1000.0);
+  append(&pagosFijos, CATEGORY_FIXED_PAYMENT, "Abarrotes", 1000.0);
+  append(&pagosFijos, CATEGORY_FIXED_PAYMENT, "Pago de luz", 1000.0);
+
   bubbleSort(&pagosFijos);
   printLista(&pagosFijos);
+
+  insertionSort(&comida);
+  printLista(&comida);
+
+  selectionSort(&entretenimiento);
+  printLista(&entretenimiento);
 
   linkedListFree(&pagosFijos);
   linkedListFree(&entretenimiento);

@@ -35,3 +35,37 @@ void bubbleSort(LinkedList *lista)
     }
   }
 }
+
+void insertionSort(LinkedList *lista)
+{
+  for (int i = 1; i < len(lista); i++)
+  {
+    LinkedListNode *key = get(lista, i);
+    int j = i - 1;
+    while (j >= 0 && strcmp(get(lista, j)->concept, key->concept) > 0)
+    {
+      LinkedListNode *temp2 = get(lista, j);
+      j--;
+    }
+    delete(lista, i);
+    insert(lista, key, j + 1);
+  }
+}
+
+void selectionSort(LinkedList *lista)
+{
+  for (int i = 0; i < len(lista) - 1; i++)
+  {
+    int min = i;
+    for (int j = i + 1; j < len(lista); j++)
+    {
+      if (strcmp(get(lista, min)->concept, get(lista, j)->concept) < 0)
+      {
+        min = j;
+      }
+    }
+    LinkedListNode *temp3 = get(lista, min);
+    delete(lista, min);
+    insert(lista, temp3, i);
+  }
+}
