@@ -20,117 +20,117 @@
 
 int main(void)
 {
-    char concepto[CONCEPT_LENGHT] = {0};
-    float monto = 0;
-    int op = 1;
-    int tipo = 0;
+    // char concepto[CONCEPT_LENGHT] = {0};
+    // float monto = 0;
+    // int op = 1;
+    // int tipo = 0;
 
-    LinkedList pagosFijos;
-    LinkedList entretenimiento;
-    LinkedList comida;
+    // Creando listas
+    LinkedList canciones;
 
     // Inicializando listas
-    linkedListInit(&pagosFijos);
-    linkedListInit(&entretenimiento);
-    linkedListInit(&comida);
+    linkedListInit(&canciones);
+    append(&canciones, "El problema", "Bad Bunny", "Trap");
+    append(&canciones, "La gasolina", "Daddy Yankee", "Reggaeton");
+    append(&canciones, "La camisa negra", "Juanes", "Rock");
+    append(&canciones, "La bicicleta", "Carlos Vives", "Reggaeton");
+    append(&canciones, "La bamba", "Ritchie Valens", "Rock");
 
 
-    do
-    {
-        menu();
 
-        scanf(" %d", &op);
+    mergeSort(&canciones);
+    printLista(&canciones);
 
-        // vaciar stdin antes de capturar el concepto
-        int c;
-        while ((c = getchar()) != '\n' && c != EOF);
+    // do
+    // {
+    //     menu();
 
-        switch (op)
-        {
-        case 1:
-            printf("INGRESA EL TITULO DE LA CANCION: ");
-            fgets(concepto, CONCEPT_LENGHT, stdin);
+    //     scanf(" %d", &op);
 
-            char *p;
-            if ((p = strchr(concepto, '\n')) != NULL)
-                *p = '\0';
+    //     // vaciar stdin antes de capturar el concepto
+    //     int c;
+    //     while ((c = getchar()) != '\n' && c != EOF);
 
-            printf("INGRESA EL NOMBRE DEL ARTISTA: ");//A ESTE LE FALTA MODIFICACION
-            scanf(" %f", &monto);
+    //     switch (op)
+    //     {
+    //     case 1:
+    //         printf("INGRESA EL TITULO DE LA CANCION: ");
+    //         fgets(concepto, CONCEPT_LENGHT, stdin);
 
-            printf(
-                "Ingresar el tipo de gasto\n"
-                "[1] Comida\n"
-                "[2] Entretenimiento\n"
-                "[3] Pago fijo\n"
-                "-->");
+    //         char *p;
+    //         if ((p = strchr(concepto, '\n')) != NULL)
+    //             *p = '\0';
 
-            scanf(" %d", &tipo);
+    //         printf("INGRESA EL NOMBRE DEL ARTISTA: ");//A ESTE LE FALTA MODIFICACION
+    //         scanf(" %f", &monto);
 
-            switch (tipo - 1) // para capturar el valor correcto
-            {
-            case CATEGORY_FOOD:
-                append(
-                    &comida,
-                    CATEGORY_FOOD,
-                    concepto,
-                    monto);
-                break;
+    //         printf(
+    //             "Ingresar el tipo de gasto\n"
+    //             "[1] Comida\n"
+    //             "[2] Entretenimiento\n"
+    //             "[3] Pago fijo\n"
+    //             "-->");
 
-            case CATEGORY_ENTERTAMENT:
-                append(
-                    &entretenimiento,
-                    CATEGORY_ENTERTAMENT,
-                    concepto,
-                    monto);
-                break;
+    //         scanf(" %d", &tipo);
 
-            case CATEGORY_FIXED_PAYMENT:
-                append(
-                    &pagosFijos,
-                    CATEGORY_FIXED_PAYMENT,
-                    concepto,
-                    monto);
-                break;
+    //         switch (tipo - 1) // para capturar el valor correcto
+    //         {
+    //         case CATEGORY_FOOD:
+    //             append(&comida,
+    //             break;
 
-            default:
-                printf("Tipo de gasto invalido!, Cancelado.\n");
-                break;
-            }
+    //         case CATEGORY_ENTERTAMENT:
+    //             append(
+    //                 &entretenimiento,
+    //                 CATEGORY_ENTERTAMENT,
+    //                 concepto,
+    //                 monto);
+    //             break;
 
-            break;
+    //         case CATEGORY_FIXED_PAYMENT:
+    //             append(
+    //                 &,
+    //                 CATEGORY_FIXED_PAYMENT,
+    //                 concepto,
+    //                 monto);
+    //             break;
 
-        case 2:
-            insertionSort(&comida);
-            printLista(&comida);
-            break;
+    //         default:
+    //             printf("Tipo de gasto invalido!, Cancelado.\n");
+    //             break;
+    //         }
 
-        case 3:
-            selectionSort(&entretenimiento);
-            printLista(&entretenimiento);
-            break;
+    //         break;
 
-        case 4:
+    //     case 2:
+    //         insertionSort(&comida);
+    //         printLista(&comida);
+    //         break;
 
-            mergeSort(&pagosFijos);
-            printLista(&pagosFijos);
-            break;
+    //     case 3:
+    //         selectionSort(&entretenimiento);
+    //         printLista(&entretenimiento);
+    //         break;
 
-        case 0:
-            printf("saliendo...\n");
-            break;
+    //     case 4:
 
-        default:
-            printf("opcion desconocida...\n");
-            break;
-        }
+    //         mergeSort(&);
+    //         printLista(&);
+    //         break;
 
-    } while (op);
+    //     case 0:
+    //         printf("saliendo...\n");
+    //         break;
+
+    //     default:
+    //         printf("opcion desconocida...\n");
+    //         break;
+    //     }
+
+    // } while (op);
 
     // liberar memoria
-    linkedListFree(&pagosFijos);
-    linkedListFree(&entretenimiento);
-    linkedListFree(&comida);
+    linkedListFree(&canciones);
 
     return 0;
 }

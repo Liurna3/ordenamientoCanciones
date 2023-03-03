@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int menu (void){
+void menu(){
     printf(
             "\nPLAYLIST DE CANCIONES\n"
             " [1] CAPTURAR CANCION\n"

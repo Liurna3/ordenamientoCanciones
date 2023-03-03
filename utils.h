@@ -14,9 +14,9 @@ int len(LinkedList *list) { return linkedListLenght(list); }
  * @param category CATEGORY_FOOD, CATEGORY_ENTERTAMENT, CATEGORY_FIXED_PAYMENT
  * @param cost valor en dinero
  */
-void append(LinkedList *list, short category, char *concept, float cost)
+void append(LinkedList *list, char *title, char *album, char *artist)
 {
-  linkedListInsertLast(list, linkedListNodeCreate(category, concept, cost));
+  linkedListInsertLast(list, linkedListNodeCreate(title, album, artist));
 }
 
 /**
@@ -52,33 +52,33 @@ LinkedListNode *get(LinkedList *list, int position)
 }
 
 /**
- * Obtener la categoria de un nodo
- * @param direccion al nodo
- * @return categoria
- */
-short category(LinkedListNode *node)
-{
-  return node->category;
-}
-
-/**
  * Obtener el Concepto del nodo
  * @param direccion al nodo
  * @return consepto
  */
-char *concept(LinkedListNode *node)
+char *title(LinkedListNode *node)
 {
-  return node->concept;
+  return node->title;
 }
 
 /**
- * Obtener el Costo del nodo
+ * Obtener el Album del nodo
  * @param direccion al nodo
- * @return costo
+ * @return album
  */
-float cost(LinkedListNode *node)
+char *album(LinkedListNode *node)
 {
-  return node->cost;
+  return node->album;
+}
+
+/**
+ * Obtener el Artista del nodo
+ * @param direccion al nodo
+ * @return artista
+ */
+char *artist(LinkedListNode *node)
+{
+  return node->artist;
 }
 
 /**

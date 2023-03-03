@@ -27,21 +27,21 @@ struct LinkedListNode
   struct LinkedListNode *next;
 
   /* Propiedades */
-  short category;
-  char concept[CONCEPT_LENGHT];
-  float cost;
+  char title[CONCEPT_LENGHT];
+  char album[CONCEPT_LENGHT];
+  char artist[CONCEPT_LENGHT];
 };
 
 typedef struct LinkedListNode LinkedListNode;
 
 /**
  * Crear un nodo para la lista
- * @param categoria
- * @param concepto
+ * @param titulo
+ * @param album
+ * @param artista
  * @return direccion al nodo
  */
-LinkedListNode *linkedListNodeCreate(short category, char *concept,
-                                     float cost)
+LinkedListNode *linkedListNodeCreate(char *title, char *album, char *artist)
 {
   LinkedListNode *foo = malloc(sizeof(LinkedListNode));
 
@@ -53,9 +53,9 @@ LinkedListNode *linkedListNodeCreate(short category, char *concept,
 
   foo->next = NULL;
 
-  strcpy(foo->concept, concept);
-  foo->category = category;
-  foo->cost = cost;
+  strcpy(foo->title, title);
+  strcpy(foo->album, album);
+  strcpy(foo->artist, artist);
 
   return foo;
 }
@@ -67,7 +67,7 @@ LinkedListNode *linkedListNodeCreate(short category, char *concept,
  */
 LinkedListNode *linkedListNodeCopy(LinkedListNode *node)
 {
-  return linkedListNodeCreate(node->category, node->concept, node->cost);
+  return linkedListNodeCreate(node->title, node->album, node->artist);
 }
 
 /**
@@ -75,8 +75,7 @@ LinkedListNode *linkedListNodeCopy(LinkedListNode *node)
  * @param
  * @return
  */
-void linkedListNodeInit(LinkedListNode *node, short category, char *concept,
-                        float cost)
+void linkedListNodeInit(LinkedListNode *node, char *title, char *album, char *artist)
 {
   node = malloc(sizeof(LinkedListNode));
 
@@ -88,9 +87,10 @@ void linkedListNodeInit(LinkedListNode *node, short category, char *concept,
 
   node->next = NULL;
 
-  strcpy(node->concept, concept);
-  node->category = category;
-  node->cost = cost;
+  strcpy(node->title, title);
+  strcpy(node->album, album);
+  strcpy(node->artist, artist);
+  
 }
 
 /**
@@ -100,22 +100,7 @@ void linkedListNodeInit(LinkedListNode *node, short category, char *concept,
  */
 void linkedListNodeDisplay(LinkedListNode *node)
 {
-  switch (node->category)
-  {
-  case CATEGORY_FOOD:
-    printf("Comida, ");
-    break;
-
-  case CATEGORY_ENTERTAMENT:
-    printf("Diversion, ");
-    break;
-
-  case CATEGORY_FIXED_PAYMENT:
-    printf("Pagos fijos, ");
-    break;
-  }
-
-  printf("%s, %0.2f", node->concept, node->cost);
+  printf("Titulo: %s | Album: %s | Artista: %s \n", node->title, node->album, node->artist);
 }
 
 #endif
