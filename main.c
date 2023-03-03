@@ -1,13 +1,12 @@
 
 /**
- * AUTORES:                                                   FECHA: 26-02-2023
+ * AUTORES:                                                   FECHA: 03-03-2023
  * 1274895 - Luis Eduardo Galindo Amaya
  * 1270900 - Jorge Omar Torres Sosa
  * 1271949 - Mariano Perez Piña
  *
- * DESCRIPCIÓN: M2.1 Ejercicio de ordenamiento básico.
- * Escribe un programa que capture los gastos de una persona y que calcule
- * cuánto ha gastado en total.
+ * DESCRIPCIÓN: M2.1 Ejercicio de ordenamiento mas eficiente.
+ * Escribe un programa que simule un playlist de canciones.
  */
 
 #include "linkedList.h"
