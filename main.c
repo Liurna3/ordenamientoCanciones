@@ -36,11 +36,11 @@ int main(void)
     do
     {
         printf(
-            "\nCAPTURADOR DE GASTOS\n"
-            " [1] CAPTURAR GASTO\n"
-            " [2] MOSTRAR GASTO EN ALIMENTOS\n"
-            " [3] MOSTRAR GASTO EN DIVERSION\n"
-            " [4] MOSTRAR GASTO EN PAGOS FIJOS\n"
+            "\nPLAYLIST DE CANCIONES\n"
+            " [1] CAPTURAR CANCION\n"
+            " [2] MOSTRAR PLAYLIST ORDENADA POR CANCION\n"
+            " [3] MOSTRAR PLAYLIST ORDENADA POR ALBUM\n"
+            " [4] MOSTRAR PLAYLIST ORDENADA POR ARTISTA\n"
             " [0] SALIR\n"
             " --> ");
 
@@ -53,14 +53,14 @@ int main(void)
         switch (op)
         {
         case 1:
-            printf("INGRESAR EL CONCEPTO: ");
+            printf("INGRESA EL TITULO DE LA CANCION: ");
             fgets(concepto, CONCEPT_LENGHT, stdin);
 
             char *p;
             if ((p = strchr(concepto, '\n')) != NULL)
                 *p = '\0';
 
-            printf("INGRESAR MONTO($): ");
+            printf("INGRESA EL NOMBRE DEL ARTISTA: ");//A ESTE LE FALTA MODIFICACION
             scanf(" %f", &monto);
 
             printf(
