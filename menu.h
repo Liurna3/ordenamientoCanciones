@@ -1,3 +1,5 @@
+//Solo para imprimir el menu y que se vea un poco mas limpio
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
