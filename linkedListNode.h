@@ -100,7 +100,7 @@ void linkedListNodeInit(LinkedListNode *node, char *title, char *album, char *ar
  */
 void linkedListNodeDisplay(LinkedListNode *node)
 {
-  printf("Titulo: %s | Album: %s | Artista: %s \n", node->title, node->album, node->artist);
+  printf("%-33s %-33s %-33s", node->title, node->album, node->artist);
 }
 
 #endif

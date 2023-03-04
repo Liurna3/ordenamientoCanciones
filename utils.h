@@ -96,6 +96,7 @@ void display(LinkedListNode *node)
  */
 void printLista(LinkedList *lista)
 {
+  printf("%-33s %-33s %-33s \n", "Titulo", "Album", "Artista");
   for (int i = 0; i < len(lista); i++)
   {
     display(get(lista, i));
