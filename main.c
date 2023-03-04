@@ -29,13 +29,12 @@ int main(void)
 
     // Inicializando listas
     linkedListInit(&canciones);
-    append(&canciones, "El problema", "Bad Bunny", "Trap");
-    append(&canciones, "La gasolina", "Daddy Yankee", "Reggaeton");
-    append(&canciones, "La camisa negra", "Juanes", "Rock");
-    append(&canciones, "La bicicleta", "Carlos Vives", "Reggaeton");
-    append(&canciones, "La bamba", "Ritchie Valens", "Rock");
-
-
+    append(&canciones, "El problema", "Un verano sin ti", "Bad Bunny");
+    append(&canciones, "Trastorno bipoalar", "Trastorno bipolar", "Porta");
+    append(&canciones, "Apagado o Fuera de Cobertura", "Energia", "El Chojin");
+    append(&canciones, "Un dia en Suburbia", "Un dia en Suburbia", "Nach");
+    append(&canciones, "Meteorito", "Antonimo", "Rayden");
+    append(&canciones, "Jeremias 17:5", "Muerte", "Canserbero");
 
     mergeSort(&canciones);
     printLista(&canciones);
