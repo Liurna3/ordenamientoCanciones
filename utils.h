@@ -136,3 +136,13 @@ void printLista(LinkedList *lista)
     printf("\n");
   }
 }
+
+/**
+ * Saber cual string es mayor
+ * @param str1 string 1
+ * @param str2 string 2
+ */
+int strDiff(char *str1, char *str2)
+{
+  return strcmp(str1, str2) < 0;
+}

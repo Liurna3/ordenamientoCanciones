@@ -28,7 +28,7 @@ void mergeSort(LinkedList *lista)
     int k = 0;
     while (i < len(left) && j < len(right))
     {
-      if (strcmp(get(left, i)->title, get(right, j)->title) < 0)
+      if (strDiff(get(left, i)->title, get(right, j)->title))
       {
         LinkedListNode *temp = get(left, i);
         delete (lista, k);
@@ -82,7 +82,7 @@ void shellSort(LinkedList *list)
     {
       LinkedListNode *temp = get(list,i);
       int j;
-      for (j = i; j>=interval && strcmp(temp->artist, get(list, j-interval)->artist) < 0; j-=interval)
+      for (j = i; j>=interval && strDiff(temp->artist, get(list, j-interval)->artist); j-=interval)
       {
         LinkedListNode *current = get(list, j-interval);
         delete(list,j);
