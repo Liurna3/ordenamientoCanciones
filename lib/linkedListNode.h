@@ -17,11 +17,6 @@
 /* caracteres que puede contener concept */
 #define STRING_LENGHT 32
 
-/* categorias de gastos */
-#define CATEGORY_FOOD 0
-#define CATEGORY_ENTERTAMENT 1
-#define CATEGORY_FIXED_PAYMENT 2
-
 struct LinkedListNode
 {
   struct LinkedListNode *next;
