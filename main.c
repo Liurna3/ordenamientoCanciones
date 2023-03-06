@@ -38,6 +38,9 @@ int main(void)
 
     mergeSort(&canciones);
     printLista(&canciones);
+    printf("------------------\n");
+    shellSort(&canciones);
+    printLista(&canciones);
 
     linkedListFree(&canciones);
 

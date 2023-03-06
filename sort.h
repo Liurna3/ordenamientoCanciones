@@ -1,7 +1,7 @@
 
 /**
  * AUTOR: Jorge Omar Torres Sosa                               FECHA: 26-02-2023
- * 
+ *
  * DESCRIPCIÓN:
  * En este archivo se encuentran los algoritmos para ordenar las listas.
  */
@@ -36,17 +36,17 @@ void mergeSort(LinkedList *lista)
     int k = 0;
     while (i < len(left) && j < len(right))
     {
-      if (strcmp(get(left, i)->title, get(right,j)->title) < 0)
+      if (strcmp(get(left, i)->title, get(right, j)->title) < 0)
       {
         LinkedListNode *temp = get(left, i);
-        delete(lista, k);
+        delete (lista, k);
         insert(lista, temp, k);
         i++;
       }
       else
       {
         LinkedListNode *temp = get(right, j);
-        delete(lista, k);
+        delete (lista, k);
         insert(lista, temp, k);
         j++;
       }
@@ -55,7 +55,7 @@ void mergeSort(LinkedList *lista)
     while (i < len(left))
     {
       LinkedListNode *temp = get(left, i);
-      delete(lista, k);
+      delete (lista, k);
       insert(lista, temp, k);
       i++;
       k++;
@@ -63,12 +63,48 @@ void mergeSort(LinkedList *lista)
     while (j < len(right))
     {
       LinkedListNode *temp = get(right, j);
-      delete(lista, k);
+      delete (lista, k);
       insert(lista, temp, k);
       j++;
       k++;
     }
   }
+}
+
+/**
+ * Ordenamiento shell por artista, en progreso...
+ * @author Luis Eduardo Galindo Amaya
+ */
+void shellSort(LinkedList *list)
+{
+  if (linkedListEmpty(list))
+    return; // lista vacia
+
+  if (linkedListLenght(list) == 1)
+    return; // lista trivialmente ordenada
+
+  int n = linkedListLenght(list);
+  for (int interval = n/2; interval > 0; interval /= 2)
+  {
+    for (int  i = interval; i < n; i++)
+    {
+      LinkedListNode *temp = get(list,i);
+      int j=i;
+      LinkedListNode *current = get(list, j-interval);
+      for (j = i; j>=interval && strcmp(temp->artist, current->artist) < 0; j-=interval)
+      {
+        delete(list,j) ;
+        insert(list,current,j);
+        current = get(list, j-interval);
+      }
+      
+      delete(list,j) ;
+      insert(list,temp,j);
+    }
+    
+  }
+  
+
 }
 
 // void insertionSort(LinkedList *lista)
