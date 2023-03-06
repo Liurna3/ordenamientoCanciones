@@ -15,7 +15,7 @@
 #include <string.h>
 
 /* caracteres que puede contener concept */
-#define CONCEPT_LENGHT 32
+#define STRING_LENGHT 32
 
 /* categorias de gastos */
 #define CATEGORY_FOOD 0
@@ -27,9 +27,9 @@ struct LinkedListNode
   struct LinkedListNode *next;
 
   /* Propiedades */
-  char title[CONCEPT_LENGHT];
-  char album[CONCEPT_LENGHT];
-  char artist[CONCEPT_LENGHT];
+  char title[STRING_LENGHT];
+  char album[STRING_LENGHT];
+  char artist[STRING_LENGHT];
 };
 
 typedef struct LinkedListNode LinkedListNode;

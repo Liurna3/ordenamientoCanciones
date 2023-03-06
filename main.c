@@ -19,7 +19,7 @@
 
 int main(void)
 {
-    // char concepto[CONCEPT_LENGHT] = {0};
+    // char concepto[STRING_LENGHT] = {0};
     // float monto = 0;
     // int op = 1;
     // int tipo = 0;
@@ -53,7 +53,7 @@ int main(void)
     //     {
     //     case 1:
     //         printf("INGRESA EL TITULO DE LA CANCION: ");
-    //         fgets(concepto, CONCEPT_LENGHT, stdin);
+    //         fgets(concepto, STRING_LENGHT, stdin);
 
     //         char *p;
     //         if ((p = strchr(concepto, '\n')) != NULL)
