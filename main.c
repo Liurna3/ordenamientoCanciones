@@ -9,8 +9,8 @@
  * Escribe un programa que simule un playlist de canciones.
  */
 
-#include "linkedList.h"
-#include "linkedListNode.h"
+#include "lib/linkedList.h"
+#include "lib/linkedListNode.h"
 
 #include "utils.h"
 #include "sort.h"
@@ -39,95 +39,6 @@ int main(void)
     mergeSort(&canciones);
     printLista(&canciones);
 
-    // do
-    // {
-    //     menu();
-
-    //     scanf(" %d", &op);
-
-    //     // vaciar stdin antes de capturar el concepto
-    //     int c;
-    //     while ((c = getchar()) != '\n' && c != EOF);
-
-    //     switch (op)
-    //     {
-    //     case 1:
-    //         printf("INGRESA EL TITULO DE LA CANCION: ");
-    //         fgets(concepto, STRING_LENGHT, stdin);
-
-    //         char *p;
-    //         if ((p = strchr(concepto, '\n')) != NULL)
-    //             *p = '\0';
-
-    //         printf("INGRESA EL NOMBRE DEL ARTISTA: ");//A ESTE LE FALTA MODIFICACION
-    //         scanf(" %f", &monto);
-
-    //         printf(
-    //             "Ingresar el tipo de gasto\n"
-    //             "[1] Comida\n"
-    //             "[2] Entretenimiento\n"
-    //             "[3] Pago fijo\n"
-    //             "-->");
-
-    //         scanf(" %d", &tipo);
-
-    //         switch (tipo - 1) // para capturar el valor correcto
-    //         {
-    //         case CATEGORY_FOOD:
-    //             append(&comida,
-    //             break;
-
-    //         case CATEGORY_ENTERTAMENT:
-    //             append(
-    //                 &entretenimiento,
-    //                 CATEGORY_ENTERTAMENT,
-    //                 concepto,
-    //                 monto);
-    //             break;
-
-    //         case CATEGORY_FIXED_PAYMENT:
-    //             append(
-    //                 &,
-    //                 CATEGORY_FIXED_PAYMENT,
-    //                 concepto,
-    //                 monto);
-    //             break;
-
-    //         default:
-    //             printf("Tipo de gasto invalido!, Cancelado.\n");
-    //             break;
-    //         }
-
-    //         break;
-
-    //     case 2:
-    //         insertionSort(&comida);
-    //         printLista(&comida);
-    //         break;
-
-    //     case 3:
-    //         selectionSort(&entretenimiento);
-    //         printLista(&entretenimiento);
-    //         break;
-
-    //     case 4:
-
-    //         mergeSort(&);
-    //         printLista(&);
-    //         break;
-
-    //     case 0:
-    //         printf("saliendo...\n");
-    //         break;
-
-    //     default:
-    //         printf("opcion desconocida...\n");
-    //         break;
-    //     }
-
-    // } while (op);
-
-    // liberar memoria
     linkedListFree(&canciones);
 
     return 0;
