@@ -29,6 +29,7 @@ int main(void)
 
     // Inicializando listas
     linkedListInit(&canciones);
+
     append(&canciones, "El problema", "Un verano sin ti", "Bad Bunny");
     append(&canciones, "Trastorno bipoalar", "Trastorno bipolar", "Porta");
     append(&canciones, "Apagado o Fuera de Cobertura", "Energia", "El Chojin");

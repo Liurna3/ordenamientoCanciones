@@ -86,25 +86,21 @@ void shellSort(LinkedList *list)
   int n = linkedListLenght(list);
   for (int interval = n/2; interval > 0; interval /= 2)
   {
-    for (int  i = interval; i < n; i++)
+    for (int  i = interval; i < n; i+=1)
     {
       LinkedListNode *temp = get(list,i);
-      int j=i;
-      LinkedListNode *current = get(list, j-interval);
-      for (j = i; j>=interval && strcmp(temp->artist, current->artist) < 0; j-=interval)
+      int j;
+      for (j = i; j>=interval && strcmp(temp->artist, get(list, j-interval)->artist) < 0; j-=interval)
       {
-        delete(list,j) ;
+        LinkedListNode *current = get(list, j-interval);
+        delete(list,j);
         insert(list,current,j);
-        current = get(list, j-interval);
       }
       
       delete(list,j) ;
       insert(list,temp,j);
     }
-    
   }
-  
-
 }
 
 // void insertionSort(LinkedList *lista)
