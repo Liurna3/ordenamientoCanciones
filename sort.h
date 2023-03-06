@@ -80,10 +80,10 @@ void shellSort(LinkedList *list)
   if (linkedListEmpty(list))
     return; // lista vacia
 
-  if (linkedListLenght(list) == 1)
+  if (len(list) == 1)
     return; // lista trivialmente ordenada
 
-  int n = linkedListLenght(list);
+  int n = len(list);
   for (int interval = n/2; interval > 0; interval /= 2)
   {
     for (int  i = interval; i < n; i+=1)
