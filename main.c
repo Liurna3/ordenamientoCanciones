@@ -12,32 +12,27 @@
 #include "lib/linkedList.h"
 #include "lib/linkedListNode.h"
 
-#include "utils.h"
-#include "sort.h"
-
-#include "menu.h"
+// #include "utils.h"
+// #include "sort.h"
+//#include "menu.h"
 
 int main(void)
 {
-    // char concepto[STRING_LENGHT] = {0};
-    // float monto = 0;
-    // int op = 1;
-    // int tipo = 0;
-
     // Creando listas
     LinkedList canciones;
 
     // Inicializando listas
     linkedListInit(&canciones);
-    append(&canciones, "El problema", "Un verano sin ti", "Bad Bunny");
-    append(&canciones, "Trastorno bipoalar", "Trastorno bipolar", "Porta");
-    append(&canciones, "Apagado o Fuera de Cobertura", "Energia", "El Chojin");
-    append(&canciones, "Un dia en Suburbia", "Un dia en Suburbia", "Nach");
-    append(&canciones, "Meteorito", "Antonimo", "Rayden");
-    append(&canciones, "Jeremias 17:5", "Muerte", "Canserbero");
 
-    mergeSort(&canciones);
-    printLista(&canciones);
+    int *a = malloc(sizeof(int));
+    a[0] = 100;
+
+    linkedListInsert(&canciones,linkedListNodeCreate((void*)a),0);
+
+    LinkedListNode *foo = linkedListGet(&canciones,0);
+
+    a = (int*)foo->pointer;
+    printf("%d\n", a[0]);
 
     linkedListFree(&canciones);
 
