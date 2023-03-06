@@ -19,6 +19,17 @@
 
 int main(void)
 {
+
+    char a[STRING_LENGHT];
+    for (int i = 0; i < 3; i++)
+    {
+        printf("String: \n");
+        getString(a, STRING_LENGHT);
+        printf("%s\n", a);
+    }
+
+    
+    
     // char concepto[STRING_LENGHT] = {0};
     // float monto = 0;
     // int op = 1;
@@ -39,6 +50,7 @@ int main(void)
 
     mergeSort(&canciones);
     printLista(&canciones);
+    
     printf("------------------\n");
     shellSort(&canciones);
     printLista(&canciones);
