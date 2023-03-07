@@ -23,7 +23,7 @@ int main(void)
     char album[STRING_LENGHT];
     char artista[STRING_LENGHT];
     LinkedList canciones;
-
+    
     // Inicializando listas
     linkedListInit(&canciones);
 

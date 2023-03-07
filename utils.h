@@ -13,6 +13,16 @@ void stdinFlush()
     ;
 }
 
+
+void strUpper(char *str)
+{
+  for (int i = 0; str[i] != 0; i++)
+  {
+    str[i] = str[i] & ~32; 
+  }
+  
+}
+
 /**
  * Capturar string
  * @author Luis Eduardo Galindo Amaya
@@ -28,6 +38,8 @@ void getString(char *str, int max_lenght)
   char *p;
   if ((p = strchr(str, '\n')) != NULL)
     *p = '\0';
+
+  strUpper(str);
 }
 
 /**
