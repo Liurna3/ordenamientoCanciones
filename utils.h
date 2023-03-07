@@ -14,6 +14,16 @@ void stdinFlush()
 }
 
 /**
+ * Validar si un caracter es numerico
+ * @author Luis Eduardo Galindo Amaya
+ * @param ch caracter a evaluar
+ */
+char isNumeric(char ch)
+{
+  return ch >= '0' && ch <= '9';
+}
+
+/**
  * Convertir mayuscula a minuscula
  * @param str puntero a array de chars
  * @author Luis Eduardo Galindo Amaya
@@ -21,7 +31,13 @@ void stdinFlush()
 void strUpper(char *str)
 {
   for (char *i = str; *i != 0; i++)
-    *i &= ~32; 
+  {
+    if (!isNumeric(*i))
+    {
+      // si no es numerico convertir a mayuscula
+      *i &= ~32;
+    }
+  }
 }
 
 /**
@@ -95,36 +111,6 @@ void delete(LinkedList *list, int position)
 LinkedListNode *get(LinkedList *list, int position)
 {
   return linkedListNodeCopy(linkedListGet(list, position));
-}
-
-/**
- * Obtener el Concepto del nodo
- * @param direccion al nodo
- * @return consepto
- */
-char *title(LinkedListNode *node)
-{
-  return node->title;
-}
-
-/**
- * Obtener el Album del nodo
- * @param direccion al nodo
- * @return album
- */
-char *album(LinkedListNode *node)
-{
-  return node->album;
-}
-
-/**
- * Obtener el Artista del nodo
- * @param direccion al nodo
- * @return artista
- */
-char *artist(LinkedListNode *node)
-{
-  return node->artist;
 }
 
 /**
