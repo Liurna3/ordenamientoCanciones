@@ -67,7 +67,7 @@ void mergeSort(LinkedList *lista)
 }
 
 /**
- * Ordenamiento shell por artista, en progreso...
+ * Ordenamiento shell por artista
  * @author Luis Eduardo Galindo Amaya
  */
 void shellSort(LinkedList *list)
@@ -78,18 +78,27 @@ void shellSort(LinkedList *list)
   if (len(list) == 1)
     return; // lista trivialmente ordenada
 
-  int n = len(list);
+  int n = len(list); // tamaño original de la lista
   for (int interval = n / 2; interval > 0; interval /= 2)
   {
     for (int i = interval; i < n; i += 1)
     {
       LinkedListNode *temp = get(list, i);
-      int j;
-      for (j = i; j >= interval && strDiff(temp->artist, get(list, j - interval)->artist); j -= interval)
+      int j = i;
+
+      while (j >= interval)
       {
         LinkedListNode *current = get(list, j - interval);
+
+        if (!strDiff(temp->artist, current->artist))
+          // si la diferencia es mayor a '0' el nodo esta en la posicion correcta
+          break;
+
+        // cambio de valores
         delete (list, j);
         insert(list, current, j);
+
+        j -= interval;
       }
 
       delete (list, j);
@@ -99,7 +108,7 @@ void shellSort(LinkedList *list)
 }
 
 /**
- * Ordenamiento quick por album, en progreso...
+ * Ordenamiento quick por album
  * @author Mariano Perez Piña
  */
 void quickSort(LinkedList *list)
