@@ -15,8 +15,6 @@
 #include "utils.h"
 #include "sort.h"
 
-#include "menu.h"
-
 int main(void)
 {
     // Creando listas
@@ -89,13 +87,6 @@ int main(void)
         }
 
     } while (op);
-
-    /* append(&canciones, "El problema", "Un verano sin ti", "Bad Bunny");
-    append(&canciones, "Trastorno bipoalar", "Trastorno bipolar", "Porta");
-    append(&canciones, "Apagado o Fuera de Cobertura", "Energia", "El Chojin");
-    append(&canciones, "Un dia en Suburbia", "Un dia en Suburbia", "Nach");
-    append(&canciones, "Meteorito", "Antonimo", "Rayden");
-    append(&canciones, "Jeremias 17:5", "Muerte", "Canserbero");
 
     return 0;
 }
