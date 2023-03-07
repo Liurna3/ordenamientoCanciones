@@ -21,7 +21,7 @@ void stdinFlush()
 void strUpper(char *str)
 {
   for (char *i = str; *i != 0; i++)
-    *i = *i & ~32; 
+    *i &= ~32; 
 }
 
 /**
