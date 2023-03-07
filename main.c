@@ -45,6 +45,10 @@ int main(void)
     shellSort(&canciones);
     printLista(&canciones);
 
+    printf("------------------\n");
+    quickSort(&canciones);
+    printLista(&canciones);
+
     linkedListFree(&canciones);
 
     return 0;

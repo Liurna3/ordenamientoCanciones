@@ -97,3 +97,54 @@ void shellSort(LinkedList *list)
     }
   }
 }
+
+/**
+ * Ordenamiento quick por album, en progreso...
+ * @author Mariano Perez Piña
+ */
+void quickSort(LinkedList *list)
+{
+  if (linkedListEmpty(list))
+    return; // lista vacia
+
+  if (len(list) == 1)
+    return; // lista trivialmente ordenada
+
+  LinkedList *left = malloc(sizeof(LinkedList));
+  LinkedList *right = malloc(sizeof(LinkedList));
+  linkedListInit(left);
+  linkedListInit(right);
+  LinkedListNode *pivot = get(list, 0);
+  for (int i = 1; i < len(list); i++)
+  {
+    LinkedListNode *temp = get(list, i);
+    if (strDiff(pivot->album, temp->album))
+      insert(left, temp, len(left));
+    else
+      insert(right, temp, len(right));
+  }
+  quickSort(left);
+  quickSort(right);
+  int i = 0;
+  int j = 0;
+  int k = 0;
+  while (i < len(left))
+  {
+    LinkedListNode *temp = get(left, i);
+    delete (list, k);
+    insert(list, temp, k);
+    i++;
+    k++;
+  }
+  delete (list, k);
+  insert(list, pivot, k);
+  k++;
+  while (j < len(right))
+  {
+    LinkedListNode *temp = get(right, j);
+    delete (list, k);
+    insert(list, temp, k);
+    j++;
+    k++;
+  }
+}
