@@ -32,7 +32,7 @@ void strUpper(char *str)
 {
   for (char *i = str; *i != 0; i++)
   {
-    if (!isNumeric(*i))
+    if (!isNumeric(*i) && *i != ' ')
     {
       // si no es numerico convertir a mayuscula
       *i &= ~32;
@@ -50,7 +50,7 @@ void getString(char *str, int max_lenght)
 {
   // captura el string
   fgets(str, max_lenght, stdin);
-
+  
   // reemplaza el ultimo caracter con el terminador
   char *p;
   if ((p = strchr(str, '\n')) != NULL)
