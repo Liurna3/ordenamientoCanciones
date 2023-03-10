@@ -14,6 +14,15 @@ void stdinFlush()
 }
 
 /**
+ * Validar si un caracter es alfabetico
+ */
+char isAlphabetic(unsigned int ch) {
+  ch = ch | 32;
+  return ch >= 'a' && ch <= 'z';
+}
+
+
+/**
  * Validar si un caracter es numerico
  * @author Luis Eduardo Galindo Amaya
  * @param ch caracter a evaluar
@@ -30,13 +39,12 @@ char isNumeric(char ch)
  */
 void strUpper(char *str)
 {
-  for (char *i = str; *i != 0; i++)
-  {
-    if (!isNumeric(*i) && *i != ' ')
-    {
-      // si no es numerico convertir a mayuscula
+  char *i = str;
+  
+  while(*i){
+    if (isAlphabetic(*i)) 
       *i &= ~32;
-    }
+    i++;
   }
 }
 
