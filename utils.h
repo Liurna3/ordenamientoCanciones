@@ -16,20 +16,10 @@ void stdinFlush()
 /**
  * Validar si un caracter es alfabetico
  */
-char isAlphabetic(unsigned int ch) {
-  ch = ch | 32;
-  return ch >= 'a' && ch <= 'z';
-}
-
-
-/**
- * Validar si un caracter es numerico
- * @author Luis Eduardo Galindo Amaya
- * @param ch caracter a evaluar
- */
-char isNumeric(char ch)
+char isAlphabetic(unsigned int ch)
 {
-  return ch >= '0' && ch <= '9';
+  ch = ch | 32; // convierte 'ch' en minuscula
+  return ch >= 'a' && ch <= 'z';
 }
 
 /**
@@ -39,12 +29,8 @@ char isNumeric(char ch)
  */
 void strUpper(char *str)
 {
-  char *i = str;
-  
-  while(*i){
-    if (isAlphabetic(*i)) 
-      *i &= ~32;
-    i++;
+  for (char *i = str; *i; i++) {
+    if (isAlphabetic(*i)) *i &= ~32;
   }
 }
 
@@ -58,7 +44,7 @@ void getString(char *str, int max_lenght)
 {
   // captura el string
   fgets(str, max_lenght, stdin);
-  
+
   // reemplaza el ultimo caracter con el terminador
   char *p;
   if ((p = strchr(str, '\n')) != NULL)
